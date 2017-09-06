@@ -15,6 +15,8 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
+    sourceMapFilename: '[file].map',
+    chunkFilename: '[name].[chunkhash:5].chunk.js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
@@ -30,7 +32,7 @@ module.exports = {
     rules: [
       {
         test: /\.(jsx|js)$/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
         include: [resolve('src')],
         exclude: /node_modules/
       },
@@ -62,12 +64,9 @@ module.exports = {
         test: /\.less$/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            loader: ['css-loader', 'less-loader', 'postcss-loader']
+            use: ['css-loader', 'less-loader', 'postcss-loader']
           })
       }
     ]
-  },
-  plugins: [
-    new ExtractTextPlugin("./css/index.css")
-  ]
+  }
 }
