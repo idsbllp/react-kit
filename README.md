@@ -1,7 +1,9 @@
 # react-kit
 
 > webpack: @2
+>
 > react: @15.6.1
+>
 > react-router-dom: @4.2.2
 
 ## Build Setup
