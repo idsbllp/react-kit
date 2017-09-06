@@ -13,10 +13,15 @@ var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
-    rules: utils.styleLoaders({
-      sourceMap: config.build.productionSourceMap,
-      extract: true
-    })
+    rules: [
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader', 'postcss-loader']
+        })
+      }
+    ]
   },
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
