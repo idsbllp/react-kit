@@ -4,7 +4,7 @@ export default class Loading extends Component {
   render() {
     return (
 			<header>
-        this is header-ab
+        this is headeasdasfffffff
       </header>
     )
   }
