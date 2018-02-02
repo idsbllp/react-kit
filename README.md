@@ -1,5 +1,7 @@
 # react-kit
 
+> 一个 react 脚手架, 由 vue-cli 改编而来。 
+> 
 > webpack: @2
 >
 > react: @15.6.1
@@ -28,10 +30,18 @@ npm run build
 
 ```
 
-一个 react 脚手架, 由 vue-cli 改编而来。 
+## 支持：
 
 + less
 + es6/7
++ 模块热加载
+```
+// 实例在: src/router/index.jsx, 可通过 chrome调试工具-network 查看效果
+// 路径
+import asyncComponent from '../components/async'
+// 用法
+const Index = asyncComponent(() => import('../pages/index').then(module => module.default))
+```
 
 
 如需使用 Redux, 手动切换一下分支 (doing...)
