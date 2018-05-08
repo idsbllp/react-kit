@@ -36,6 +36,7 @@ npm run build
 + es6/7
 + 模块热加载
 + redux react-router4
+
 ```
 // 实例在: src/router/index.jsx, 可通过 chrome调试工具-network 查看效果
 // 路径
@@ -47,7 +48,8 @@ const Index = asyncComponent(() => import('../pages/index').then(module => modul
 ```
 
 
-如需使用 Redux, 手动切换一下分支 (doing...)
+如无需使用 Redux, 手动切换一下分支 (done)
+
 ```
-git checkout redux
+git checkout master
 ```
