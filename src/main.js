@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Routes from './router'
+import App from './App'
 
 // static resources
 import './assets/css/index.less'
 
 ReactDOM.render(
-  <Routes />,
+  <App />,
   document.querySelector('#app')
 )
