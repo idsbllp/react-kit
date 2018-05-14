@@ -38,7 +38,7 @@ npm run build
 + redux react-router4
 
 ```
-// 实例在: src/router/index.jsx, 可通过 chrome调试工具-network 查看效果
+// 模块热加载 实例在: src/router/index.jsx, 可通过 chrome调试工具-network 查看效果
 // 路径
 import asyncComponent from '../components/async'
 // 用法

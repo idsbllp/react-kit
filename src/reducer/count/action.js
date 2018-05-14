@@ -2,11 +2,11 @@ const ADD = "add"
 const REDUCE = "reduce"
 
 const add = () => ({
-    type: ADD
+  type: ADD
 })
 
 const reduce = () => ({
-    type: REDUCE
+  type: REDUCE
 })
 
 export { ADD , REDUCE , add , reduce }

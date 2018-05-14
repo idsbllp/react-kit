@@ -3,40 +3,38 @@ import React, { Component } from 'react'
 import { add , reduce } from '../../reducer/count/action.js'
 
 class Counter extends Component {
-    constructor(props) {
-        super(props)
-        this.reduceCount = this.reduceCount.bind(this)
-        this.addCount = this.addCount.bind(this)
-    }
-    reduceCount() {
-        this.props.reduceCount()
-        console.log(123)
-    }
-    addCount() {
-        console.log(123)
-        this.props.addCount()
-    }
-    render() { 
-        console.log(this.props)
-        const { count } = this.props
-        return (
-            <div>
-                <span>{count}</span>
-                <button onClick={this.addCount}> + </button>
-                <button onClick={this.reduceCount}> - </button>
-            </div>
-        )
-    }
+  constructor(props) {
+    super(props)
+    this.reduceCount = this.reduceCount.bind(this)
+    this.addCount = this.addCount.bind(this)
+  }
+  reduceCount() {
+    this.props.reduceCount()
+  }
+  async addCount() {
+    this.props.addCount()
+  }
+  render() { 
+    console.log(this.props)
+    const { count } = this.props
+    return (
+      <div>
+        <span>{count}</span>
+        <button onClick={this.addCount}> + </button>
+        <button onClick={this.reduceCount}> - </button>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => {
-    return {
-        count: state.Count
-    }
+  return {
+    count: state.Count
+  }
 } 
 const mapDispatchToProps = dispatch => ({
-    addCount: () => dispatch(add()),
-    reduceCount: () => dispatch(reduce())
+  addCount: () => dispatch(add()),
+  reduceCount: () => dispatch(reduce())
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(Counter)

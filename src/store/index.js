@@ -7,8 +7,8 @@ import Count from '../reducer/count/index.js' //引入reducer
 const reduxDevtools =  window.devToolsExtension ? window.devToolsExtension() : f=> f //唤醒chrome redux插件
 
 const store = createStore(combineReducers({Count}),compose(
-    applyMiddleware(thunk),
-    reduxDevtools
+  applyMiddleware(thunk),
+  reduxDevtools
 ))
 
 export default store
