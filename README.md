@@ -47,9 +47,3 @@ const Index = asyncComponent(() => import('../pages/index').then(module => modul
 //引入的reducer combineReducers到store中就行，可安装chrome redux插件查看redux状态
 ```
 
-
-如无需使用 Redux, 手动切换一下分支 (done)
-
-```
-git checkout master
-```
