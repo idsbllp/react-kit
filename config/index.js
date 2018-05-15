@@ -1,6 +1,10 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 
+var getPortSync = require('../build/get-port.js').getPortSync
+
+var port = getPortSync(8080)
+
 module.exports = {
   build: {
     env: require('./prod.env'),
@@ -23,7 +27,7 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8080,
+    port: port,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',

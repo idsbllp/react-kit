@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { HashRouter as Router, Link } from 'react-router-dom'
 
 import Header from './components/header'
+import Counter from './components/count'
 import Routes from './router'
 
 export default class App extends Component {
@@ -16,6 +17,7 @@ export default class App extends Component {
           </nav>
         </Router>
         <Routes />
+        <Counter />
       </div>
     )
   }
