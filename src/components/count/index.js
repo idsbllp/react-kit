@@ -1,8 +1,13 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import { add , reduce } from '../../reducer/count/action.js'
 
 class Counter extends Component {
+  static propTypes = {
+    addCount: PropTypes.func.isRequired
+  }
   constructor(props) {
     super(props)
     this.reduceCount = this.reduceCount.bind(this)
