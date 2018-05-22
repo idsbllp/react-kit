@@ -145,7 +145,7 @@
 .loopElipsis(@i) when (@i > 0) {
   .loopElipsis((@i - 1));
   &:nth-of-type(@{i}) {
-    @types: 'type@i';
+    @types: ~'type@{i}';
     animation: @types 1s linear infinite;
     animation-delay: @i * 0.15s;
     @keyframes @types {
