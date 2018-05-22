@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Loading from './loading'
+import Loading from '../loading'
 
 const asyncComponent = getComponent => {
   return class AsyncComponent extends Component {

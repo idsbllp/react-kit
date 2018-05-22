@@ -1,0 +1,409 @@
+.gear(@width, @colorTop, @colorBottom) {
+  position: absolute;
+  width: @width;
+  height: @width;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 28%;
+    height: 28%;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: -5px -5px 10px darken(@colorTop, 6%);
+  }
+  &-angle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, @colorTop, @colorBottom);
+    border-radius: 14%;
+    box-shadow: 5px 3px 10px rgba(0,0,0,.16);
+
+    &:nth-of-type(2) {
+      background: linear-gradient(180-45deg, @colorTop, @colorBottom);
+      transform: rotate(-45deg);
+      box-shadow: none;
+    }
+    /* 解决父元素因 transform 使 z-index 失效的问题
+    * https://stackoverflow.com/questions/20851452/z-index-is-canceled-by-setting-transformrotate
+    */
+    &_shadow {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180+45deg, @colorTop, @colorBottom);
+      border-radius: inherit;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        bottom: 10px;
+        left: 10px;
+        width: 20px;
+        height: 20px;
+        box-shadow: -3px 20px 15px rgba(0, 0, 0, 0.16);
+        transform: rotate(20deg);
+      }
+      &:after {
+        left: auto;
+        right: -6px;
+        transform:rotate(10deg);
+      }
+    }
+  }
+}
+.light(@color1, @color2, @time, @during) {
+  position: absolute;
+  &-ball {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: @color1;
+    border-radius: 50%;
+    box-shadow: -4px -4px 5px rgba(0, 0, 0, 0.15) inset,
+      5px 5px 5px rgba(255, 255, 255, 0.25) inset;
+    animation: flash @time linear infinite;
+    animation-delay: @during * 1s;
+    &:before,
+    &:after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 7px;
+      left: 8px;
+      z-index: 4;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,.7);
+    }
+    &:after {
+      top: 5px;
+      left: 12px;
+      width: 2px;
+      height: 2px;
+    }
+  }
+  &-flash {
+    position: absolute;
+    top: 12px;
+    right: -16px;
+    width: 8px;
+    height: 2px;
+    background: @color1;
+    transform: rotate(-4deg);
+    animation: flash @time linear infinite;
+    animation-delay: @during * 1s;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: -7px;
+      right: 1px;
+      width: 8px;
+      height: 2px;
+      background: @color1;
+      transform: rotate(-22deg);
+      animation: flash @time linear infinite;
+      animation-delay: @during * 1s;
+    }
+    &:after {
+      top: -13px;
+      right: 4px;
+      transform: rotate(-50deg);
+    }
+  }
+  &-stand {
+    position: absolute;
+    margin: 4px 0 0 9px;
+    width: 12px;
+    height: 6px;
+    background-color: #9bbbd1;
+    &:after {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      display: block;
+      width: 12px;
+      height: 8px;
+      background: linear-gradient(180deg, @color1, @color2);
+      box-shadow: -4px -1px 5px rgba(0, 0, 0, 0.15) inset,
+        2px 2px 5px rgba(255, 255, 255, 0.25) inset;
+      z-index: -1;
+    }
+  }
+}
+.loopElipsis(@i) when (@i > 0) {
+  .loopElipsis((@i - 1));
+  &:nth-of-type(@{i}) {
+    @types: 'type@i';
+    animation: @types 1s linear infinite;
+    animation-delay: @i * 0.15s;
+    @keyframes @types {
+      0%,100% {
+        transform: translateY(-6px);
+      }
+      20%,80% {
+        transform: translateY(6px);
+      }
+    }
+  }
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  &-con {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 326px;
+    height: 278px;
+  }
+  &:after {
+    display: inline-block;
+    content: '';
+    height: 100%;
+    vertical-align: middle;
+  }
+  &-gear {
+    transform: rotate(7deg);
+    top: 16px;
+    left: 66px;
+    .gear(84px, #00d0e9, #00bacf);
+    animation: rotate1 11s linear infinite;
+  }
+  &-gear2 {
+    transform: rotate(-6deg);
+    top: 26px;
+    left: 186px;
+    .gear(72px, #a9da00, #93be00);
+    animation: rotate2 11s linear infinite;
+  }
+  &-gear3 {
+    top: 108px;
+    left: 113px;
+    .gear(100px, #ffa368, #ff8052);
+    animation: rotate3 11s linear infinite;
+  }
+  &-text {
+    margin-top: 240px;
+    font-size: 24px;
+    color: #ffcb2d;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,.2);
+    &-dot {
+      display: inline-block;
+      transform: translateY(-6px);
+      .loopElipsis(3);
+    }
+  }
+  &-line {
+    position: absolute;
+    z-index: -3;
+    height: 4px;
+    width: 80px;
+    background-color: #ffab47;
+    &1 {
+      top: 70px;
+      left: 0;
+      .dot-left();
+    }
+    &2 {
+      top: 80px;
+      left: 20px;
+      .dot-left();
+    }
+    &3 {
+      top: 98px;
+      left: 20px;
+      .dot-left();
+    }
+    &3 {
+      top: 102px;
+      left: 20px;
+      .dot-left();
+    }
+    &4 {
+      top: 34px;
+      left: 238px;
+      width: 40px;
+    }
+    &5 {
+      top: 44px;
+      left: 248px;
+      width: 40px;
+    }
+    &6 {
+      top: 34-14px;
+      left: 271px;
+      width: 40px;
+      transform: rotate(-45deg);
+      .dot-right();
+    }
+    &7 {
+      top: 44-14px;
+      left: 281px;
+      width: 40px;
+      transform: rotate(-45deg);
+      .dot-right();
+    }
+    &8 {
+      top: 160px;
+      left: 216px;
+      width: 50px;
+    }
+    &9 {
+      top: 176px;
+      left: 200px;
+      width: 50px;
+    }
+    &10 {
+      top: 192px;
+      left: 184px;
+      width: 50px;
+    }
+    &11 {
+      top: 160+6px;
+      left: 216+40px;
+      width: 16px;
+      transform: rotate(90deg);
+    }
+    &12 {
+      top: 176+6px;
+      left: 200+40px;
+      width: 16px;
+      transform: rotate(90deg);
+    }
+    &13 {
+      top: 192+6px;
+      left: 184+40px;
+      width: 16px;
+      transform: rotate(90deg);
+    }
+    &14 {
+      top: 160+6+6px;
+      left: 216+40+8px;
+      width: 20px;
+      .dot-right();
+    }
+    &15 {
+      top: 176+6+6px;
+      left: 200+40+8px;
+      width: 20px;
+      .dot-right();
+    }
+    &16 {
+      top: 192+6+6px;
+      left: 184+40+8px;
+      width: 90px;
+      .dot-right();
+    }
+  }
+  &-light1 {
+    margin: 30px 0 0 -9px;
+    .light(#d4d4d4, #f0efe5, 4s, 0);
+  }
+  &-light2 {
+    margin: 164px 0 0 300px;
+    .light(#f4e119, #f4df00, 4s, 2);
+  }
+}
+.dot() {
+  &:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    width: 8px;
+    height: 8px;
+    background-color: #ffab47;
+    border-radius: 50%;
+  }
+}
+.dot-left() {
+  .dot();
+  &:before {
+    left: 0;
+  }
+}
+.dot-right() {
+  .dot();
+  &:before {
+    right: -1px;
+  }
+}
+
+@-webkit-keyframes rotate1 {
+  from {
+    transform: rotate(7deg);
+  }
+  to {
+    transform: rotate(-353deg);
+  }
+}
+@keyframes rotate1 {
+  from {
+    transform: rotate(7deg);
+  }
+  to {
+    transform: rotate(-353deg);
+  }
+}
+@-webkit-keyframes rotate2 {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(-366deg);
+  }
+}
+@keyframes rotate2 {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(-366deg);
+  }
+}
+@-webkit-keyframes rotate3 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate3 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes flash {
+  0%,100% {
+    background: #f0efe5;
+  }
+  20%,85% {
+    background: #ebe17b;
+  }
+  40%,70% {
+    background: #ffe900;
+  }
+}
+
