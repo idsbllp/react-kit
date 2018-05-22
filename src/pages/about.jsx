@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import DocumentTitle from 'react-document-title'
 
 export default class About extends Component {
   render() {
     return (
-      <div>
-        about
-      </div>
+      <DocumentTitle title="about">
+        <div>
+          about
+        </div>
+      </DocumentTitle>
     )
   }
 }

@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import DocumentTitle from 'react-document-title'
 
 export default class Index extends Component {
   render() {
     return (
-      <div>
-        index page
-      </div>
+      <DocumentTitle title="index">
+        <div>
+          index page
+        </div>
+      </DocumentTitle>
     )
   }
 }
