@@ -7,7 +7,7 @@ var net = require('net');
 var deasync = require('deasync');
 
 // 异步获取端口
-function _getPortAsnyc(port = 0) {
+function _getPortAsync(port = 0) {
   return new Promise(function(resolve, reject) {
     var server = net.createServer();
 
@@ -29,10 +29,10 @@ function _getPortAsnyc(port = 0) {
   });
 }
 
-function getPortAsnyc(port = 0) {
-  return _getPortAsnyc(port).catch(function() {
+function getPortAsync(port = 0) {
+  return _getPortAsync(port).catch(function() {
     // 如果失败就尝试监听0.0.0.0:0， 从系统中获取一个 free port
-    return _getPortAsnyc(0)
+    return _getPortAsync(0)
   })
 }
 
@@ -42,7 +42,7 @@ function getPortSync(port = 0) {
   // 默认端口
   var res = 8080;
 
-  getPortAsnyc(port).then(function(port) {
+  getPortAsync(port).then(function(port) {
     isDone = true;
     res = port;
   }).catch(function(err) {
@@ -57,4 +57,3 @@ function getPortSync(port = 0) {
 }
 
 exports.getPortSync = getPortSync
-

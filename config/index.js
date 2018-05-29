@@ -3,7 +3,8 @@ var path = require('path')
 
 var getPortSync = require('../build/get-port.js').getPortSync
 
-var port = getPortSync(8080)
+var isProduction = 'production' === process.env.NODE_ENV
+var port = isProduction ? 0 : getPortSync(8080);
 
 module.exports = {
   build: {
